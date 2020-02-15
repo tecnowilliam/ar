@@ -32,9 +32,9 @@ function initialize()
 
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top = '0px'
-	renderer.domElement.style.left = '0px'
+	renderer.domElement.style.position  = 'absolute'
+	renderer.domElement.style.top       = '0px'
+	renderer.domElement.style.left      = '-50%'
 	document.body.appendChild( renderer.domElement );
 
 	clock     = new THREE.Clock();
@@ -105,7 +105,7 @@ function initialize()
 
 	markerRoot1.add(mesh1);
 
-	let pointLight = new THREE.PointLight( 0xffffff, 1, 100 );
+	let pointLight = new THREE.PointLight(0xffffff, 1, 100);
     pointLight.position.set(0.5,3,2);
 
 	// create a mesh to help visualize the position of the light
