@@ -16,6 +16,7 @@ function load()
 
 function initialize()
 {
+    console.log(document.body);
 	scene = new THREE.Scene();
 
 	let ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
