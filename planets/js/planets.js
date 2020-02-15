@@ -96,7 +96,7 @@ function initialize()
 		type: 'pattern', patternUrl: "data/hiro.patt",
     })
 
-    alert(markerControls1);
+    console.log(markerControls1);
 
 	let geometry1   = new THREE.SphereGeometry(1,32,32);
 	let loader      = new THREE.TextureLoader();
