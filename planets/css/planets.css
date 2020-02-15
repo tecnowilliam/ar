@@ -1,0 +1,17 @@
+body
+{
+    margin:0px;
+    overflow:hidden;
+}
+
+#div-buttons
+{
+    padding: 10px;
+    position: absolute;
+    z-index: 1;
+}
+
+#div-cam
+{
+    position: absolute;
+}

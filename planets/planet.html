@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head lang="es">
     <meta charset="UTF-8">
-    <title>AR-Planets: Earth</title>
+    <title>AR-Planets</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartookit -->
@@ -12,8 +12,15 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
-	<script> var planet="images/earth.jpg"; </script>
 	<script src="js/planets.js"></script>
+	<link href="css/planets.css" type="text/css" rel="stylesheet"/>
 </head>
-<body style='margin:0px; overflow:hidden;'></body>
+<body>
+	<div id='div-buttons'>
+		<button onclick="action('menu')">Menú (Menu)</button>
+		<button onclick="action('move')">Mover (Move)</button>
+		<button onclick="action('stop')">Parar (Stop)</button>
+	</div>
+	<div id='div-cam'></div>
+</body>
 </html>
