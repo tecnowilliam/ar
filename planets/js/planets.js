@@ -12,6 +12,7 @@ var scene,
 
 window.onload = function()
 {
+    console.log("version: 0.0.1");
     initialize();
     animate();
 }
