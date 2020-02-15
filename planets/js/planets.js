@@ -8,7 +8,7 @@ var scene,
     arToolkitContext,
     markerRoot1,mesh1;
 
-function load()
+window.onload = function()
 {
     initialize();
     animate();
