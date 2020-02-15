@@ -99,7 +99,7 @@ function initialize()
 	let geometry1   = new THREE.SphereGeometry(1,32,32);
 	let loader      = new THREE.TextureLoader();
 	let texture     = loader.load(planet, render);
-    let material1   = new THREE.MeshLambertMaterial({map:texture, opacity:1});
+    let material1   = new THREE.MeshLambertMaterial({map:texture, opacity:0});
 
 	mesh1            = new THREE.Mesh(geometry1, material1);
 	mesh1.position.y = 1;
@@ -113,7 +113,7 @@ function initialize()
 	pointLight.add(
 		new THREE.Mesh(
 			new THREE.SphereBufferGeometry(0.05, 16,8),
-			new THREE.MeshBasicMaterial({color:0xffffff, opacity:1})
+			new THREE.MeshBasicMaterial({color:0xffffff, opacity:0})
 		)
     );
 	markerRoot1.add(pointLight);
