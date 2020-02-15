@@ -37,7 +37,7 @@ function initialize()
 	renderer.domElement.style.left = '0px'
 	document.body.appendChild( renderer.domElement );
 
-	clock = new THREE.Clock();
+	clock     = new THREE.Clock();
 	deltaTime = 0;
 	totalTime = 0;
 
@@ -98,45 +98,45 @@ function initialize()
 	let geometry1   = new THREE.SphereGeometry(1,32,32);
 	let loader      = new THREE.TextureLoader();
 	let texture     = loader.load(planet, render);
-	let material1   = new THREE.MeshLambertMaterial({map:texture});
+    let material1   = new THREE.MeshLambertMaterial({map:texture, opacity:0});
 
-	mesh1 = new THREE.Mesh( geometry1, material1 );
+	mesh1            = new THREE.Mesh(geometry1, material1);
 	mesh1.position.y = 1;
 
-	markerRoot1.add( mesh1 );
+	markerRoot1.add(mesh1);
 
 	let pointLight = new THREE.PointLight( 0xffffff, 1, 100 );
-	pointLight.position.set(0.5,3,2);
+    pointLight.position.set(0.5,3,2);
+
 	// create a mesh to help visualize the position of the light
 	pointLight.add(
 		new THREE.Mesh(
-			new THREE.SphereBufferGeometry( 0.05, 16,8 ),
-			new THREE.MeshBasicMaterial({ color: 0xffffff, opacity: 0.5 })
+			new THREE.SphereBufferGeometry(0.05, 16,8),
+			new THREE.MeshBasicMaterial({color:0xffffff, opacity:0})
 		)
-	);
-	markerRoot1.add( pointLight );
+    );
+	markerRoot1.add(pointLight);
 }
 
 function update()
 {
-	if ( markerRoot1.visible )
+	if (markerRoot1.visible)
         mesh1.rotation.y += 0.01;
 
 	// update artoolkit on every frame
-	if ( arToolkitSource.ready !== false )
-		arToolkitContext.update( arToolkitSource.domElement );
+	if (arToolkitSource.ready !== false)
+		arToolkitContext.update(arToolkitSource.domElement);
 }
-
 
 function render()
 {
-	renderer.render( scene, camera );
+	renderer.render(scene, camera);
 }
 
 function animate()
 {
 	requestAnimationFrame(animate);
-	deltaTime = clock.getDelta();
+	deltaTime  = clock.getDelta();
 	totalTime += deltaTime;
 	update();
 	render();
