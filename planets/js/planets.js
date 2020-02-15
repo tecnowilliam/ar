@@ -1,4 +1,5 @@
 var scene,
+    ambientLight,
     camera,
     renderer,
     clock,
@@ -16,11 +17,9 @@ window.onload = function()
 
 function initialize()
 {
-    console.log(document.body);
-	scene = new THREE.Scene();
-
-	let ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
-	scene.add( ambientLight );
+	scene        = new THREE.Scene();
+	ambientLight = new THREE.AmbientLight( 0xcccccc, 0.5 );
+    scene.add( ambientLight );
 
 	camera = new THREE.Camera();
 	scene.add(camera);
@@ -31,7 +30,7 @@ function initialize()
     });
 
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
-	renderer.setSize( 640, 480 );
+	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top = '0px'
 	renderer.domElement.style.left = '0px'
@@ -97,7 +96,7 @@ function initialize()
 	let geometry1 = new THREE.SphereGeometry(1, 32,32);
 
 	let loader = new THREE.TextureLoader();
-	let texture = loader.load('images/earth.jpg', render);
+	let texture = loader.load(planet, render);
 	let material1 = new THREE.MeshLambertMaterial( { map: texture, opacity: 0.5 } );
 
 	mesh1 = new THREE.Mesh( geometry1, material1 );
