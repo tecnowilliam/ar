@@ -1,0 +1,10 @@
+Videos:
+https://www.youtube.com/watch?v=Nc1dPd6gIRU
+https://www.youtube.com/watch?v=9rAIFd9atWY
+https://www.youtube.com/watch?v=W1UVcYI-ABQ
+
+Repos:
+https://github.com/stemkoski/AR-Examples
+https://stemkoski.github.io/AR-Examples/
+https://github.com/jeromeetienne/AR.js/tree/2.1.8
+https://github.com/aframevr/aframe/tree/v1.0.4
