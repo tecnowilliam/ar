@@ -12,7 +12,7 @@ var scene,
 
 window.onload = function()
 {
-    console.log("version: 0.0.1");
+    console.log("planets: 0.0.1");
     initialize();
     animate();
 }
@@ -125,8 +125,8 @@ function initialize()
 
 function update()
 {
-	if (markerRoot1.visible)
-        mesh1.rotation.y += 0.01;
+	// if (markerRoot1.visible)
+    //     mesh1.rotation.y += 0.01;
 
 	// update artoolkit on every frame
 	if (arToolkitSource.ready !== false)
