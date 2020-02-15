@@ -32,9 +32,9 @@ function initialize()
 
 	renderer.setClearColor(new THREE.Color('lightgrey'), 0)
 	renderer.setSize(window.innerWidth, window.innerHeight);
-	renderer.domElement.style.position  = 'fixed'
+	renderer.domElement.style.position  = 'absolute'
 	renderer.domElement.style.top       = '0px'
-	renderer.domElement.style.left      = '-50%'
+	renderer.domElement.style.left      = '-500px'
 	document.body.appendChild( renderer.domElement );
 
 	clock     = new THREE.Clock();
