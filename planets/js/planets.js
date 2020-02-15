@@ -7,7 +7,8 @@ var scene,
     totalTime,
     arToolkitSource,
     arToolkitContext,
-    markerRoot1,mesh1;
+    markerRoot1,
+    mesh1;
 
 window.onload = function()
 {
@@ -78,8 +79,8 @@ function initialize()
 	});
 
 	// copy projection matrix to camera when initialization complete
-	arToolkitContext.init( function onCompleted(){
-		camera.projectionMatrix.copy( arToolkitContext.getProjectionMatrix() );
+	arToolkitContext.init(function onCompleted() {
+		camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
 	});
 
 	////////////////////////////////////////////////////////////
@@ -88,16 +89,16 @@ function initialize()
 
 	// build markerControls
 	markerRoot1 = new THREE.Group();
-	scene.add(markerRoot1);
+    scene.add(markerRoot1);
+
 	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
 		type: 'pattern', patternUrl: "data/hiro.patt",
 	})
 
-	let geometry1 = new THREE.SphereGeometry(1, 32,32);
-
-	let loader = new THREE.TextureLoader();
-	let texture = loader.load(planet, render);
-	let material1 = new THREE.MeshLambertMaterial( { map: texture, opacity: 0.5 } );
+	let geometry1   = new THREE.SphereGeometry(1,32,32);
+	let loader      = new THREE.TextureLoader();
+	let texture     = loader.load(planet, render);
+	let material1   = new THREE.MeshLambertMaterial({map:texture});
 
 	mesh1 = new THREE.Mesh( geometry1, material1 );
 	mesh1.position.y = 1;
