@@ -8,8 +8,11 @@ var scene,
     arToolkitContext,
     markerRoot1,mesh1;
 
-initialize();
-animate();
+function load()
+{
+    initialize();
+    animate();
+}
 
 function initialize()
 {
