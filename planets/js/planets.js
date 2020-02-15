@@ -93,7 +93,7 @@ function initialize()
 	let geometry1 = new THREE.SphereGeometry(1, 32,32);
 
 	let loader = new THREE.TextureLoader();
-	let texture = loader.load(planet, render);
+	let texture = loader.load('images/earth.jpg', render);
 	let material1 = new THREE.MeshLambertMaterial( { map: texture, opacity: 0.5 } );
 
 	mesh1 = new THREE.Mesh( geometry1, material1 );
