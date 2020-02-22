@@ -16,11 +16,18 @@
 	<link href="css/planets.css" type="text/css" rel="stylesheet"/>
 </head>
 <body>
-	<div id='div-buttons'>
-		<button class='button b1' onclick="action('back')">Volver (Back)</button>
-		<button class='button b2' onclick="action('move')">Mover (Move)</button>
-		<button class='button b3' onclick="action('stop')">Parar (Stop)</button>
+	<div id='buttons'>
+		<button class='button b1' onclick="action('back')">Volver</button>
+		<button class='button b2' onclick="action('info')">Info</button>
+		<button class='button b3' onclick="action('move')">Mover</button>
+		<button class='button b4' onclick="action('stop')">Parar</button>
 	</div>
-	<div id='div-cam'></div>
+	<div id="planetInfo">
+		<h1>Planeta: Tierra</h1>
+		<h3>Sátelites Naturales (Lunas): 1</h3>
+		<h3>Periodo Orbital (años): 1</h3>
+		<h3>Periodo de Rotación (días): 1</h3>
+	</div>
+	<div id='camera'></div>
 </body>
 </html>

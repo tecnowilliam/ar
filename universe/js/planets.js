@@ -16,6 +16,8 @@ var planetImg,
 
 window.onload = function()
 {
+	document.getElementById("planetInfo").style.display = "none";
+
 	getParams();
     init();
     animate();
@@ -49,7 +51,7 @@ function init()
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top      = '0px'
 	renderer.domElement.style.left     = '0px'
-	document.getElementById('div-cam').appendChild(renderer.domElement);
+	document.getElementById('camera').appendChild(renderer.domElement);
 
 	clock     = new THREE.Clock();
 	deltaTime = 0;
@@ -172,6 +174,13 @@ function action(action)
 {
 	if (action == 'back')
 		window.location.href = 'index.html';
+
+	if (action == 'info')
+		if (document.getElementById("planetInfo").style.display == "none") {
+			document.getElementById("planetInfo").style.display = "block";
+		} else {
+			document.getElementById("planetInfo").style.display = "none";
+		}
 
 	if (action == 'move')
 		rotation = 0.01
