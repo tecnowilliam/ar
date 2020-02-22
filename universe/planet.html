@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <head lang="es">
-    <meta charset="UTF-8">
-    <title>AR-Planets</title>
+	<meta charset="UTF-8">
+	<title>AR-Planets</title>
 	<!-- include three.js library -->
 	<script src='js/three.js'></script>
 	<!-- include jsartookit -->
@@ -12,6 +12,7 @@
 	<script src="threex/threex-artoolkitcontext.js"></script>
 	<script src="threex/threex-arbasecontrols.js"></script>
 	<script src="threex/threex-armarkercontrols.js"></script>
+	<script src="js/dataPlanets.js"></script>
 	<script src="js/planets.js"></script>
 	<link href="css/planets.css" type="text/css" rel="stylesheet"/>
 </head>
@@ -23,10 +24,28 @@
 		<button class='button b4' onclick="action('stop')">Parar</button>
 	</div>
 	<div id="planetInfo">
-		<h1>Planeta: Tierra</h1>
-		<h3>Sátelites Naturales (Lunas): 1</h3>
-		<h3>Periodo Orbital (años): 1</h3>
-		<h3>Periodo de Rotación (días): 1</h3>
+		<table>
+			<tr>
+				<td>Planeta</td>
+				<td class='center'><span id='planetInfoName'></span></td>
+			</tr>
+			<tr>
+				<td>Sátelites Naturales (lunas)</td>
+				<td class='center'><span id='planetInfoMoons'></span></td>
+			</tr>
+			<tr>
+				<td>Diámetro Ecuatorial (Km)</td>
+				<td class='center'><span id='planetInfoDe'></span></td>
+			</tr>
+			<tr>
+				<td>Periodo Orbital (años)</td>
+				<td class='center'><span id='planetInfoPo'></span></td>
+			</tr>
+			<tr>
+				<td>Periodo de Rotación (días)</td>
+				<td class='center'><span id='planetInfoPr'></span></td>
+			</tr>
+		</table>
 	</div>
 	<div id='camera'></div>
 </body>

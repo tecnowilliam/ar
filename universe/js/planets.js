@@ -1,4 +1,5 @@
-var planetImg,
+var planetId,
+	planetImg,
 	scene,
     ambientLight,
     camera,
@@ -16,7 +17,7 @@ var planetImg,
 
 window.onload = function()
 {
-	document.getElementById("planetInfo").style.display = "none";
+	document.getElementById('planetInfo').style.display = 'none';
 
 	getParams();
     init();
@@ -26,9 +27,10 @@ window.onload = function()
 function getParams()
 {
 	const urlParams = new URLSearchParams(window.location.search);
-	planetImg 		= 'images/'+urlParams.get('planet')+'.jpg';
+	planetId		= urlParams.get('planet');
+	planetImg 		= 'images/'+planetId+'.jpg';
 
-	if (urlParams.get('planet') == null)
+	if (planetId == null)
 		window.location.href = 'index.html';
 }
 
@@ -125,19 +127,20 @@ function init()
 
 	let textLoader = new THREE.FontLoader();
 	textLoader.load('js/fonts/helvetiker_regular.typeface.json', function(font) {
-		let textGeo = new THREE.TextGeometry('Tierra', {
+		let textGeo = new THREE.TextGeometry(dataPlanets[planetId].name, {
 			font: font,
 			size: 0.5,
-			height: 1,
-			curveSegments: 12
+			height: 0.25,
+			curveSegments: 12,
 		});
 
-		// textGeo.center();
-		var textMaterial = new THREE.MeshPhongMaterial({color: 0x000000});
+		textGeo.center();
+
+		var textMaterial = new THREE.MeshPhongMaterial({color: 0x000000, opacity: 0.5});
 		textMesh 		 = new THREE.Mesh(textGeo, textMaterial);
 
-		textMesh.position.x = 1.1;
-		textMesh.position.y = 1;
+		textMesh.position.x = 2;
+		textMesh.position.y = 0.5;
 		textMesh.position.z = 0;
 		textMesh.rotation.x = 0;
 		textMesh.rotation.y = 0;
@@ -176,10 +179,11 @@ function action(action)
 		window.location.href = 'index.html';
 
 	if (action == 'info')
-		if (document.getElementById("planetInfo").style.display == "none") {
-			document.getElementById("planetInfo").style.display = "block";
+		if (document.getElementById('planetInfo').style.display == 'none') {
+			updateDataPlanet();
+			document.getElementById('planetInfo').style.display = 'block';
 		} else {
-			document.getElementById("planetInfo").style.display = "none";
+			document.getElementById('planetInfo').style.display = 'none';
 		}
 
 	if (action == 'move')
@@ -187,4 +191,13 @@ function action(action)
 
 	if (action == 'stop')
 		rotation = 0
+}
+
+function updateDataPlanet()
+{
+	document.getElementById('planetInfoName').innerHTML  = dataPlanets[planetId].name;
+	document.getElementById('planetInfoMoons').innerHTML = dataPlanets[planetId].moons;
+	document.getElementById('planetInfoDe').innerHTML = dataPlanets[planetId].de;
+	document.getElementById('planetInfoPo').innerHTML = dataPlanets[planetId].po;
+	document.getElementById('planetInfoPr').innerHTML = dataPlanets[planetId].pr;
 }
