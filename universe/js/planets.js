@@ -3,20 +3,21 @@ var planetImg,
     ambientLight,
     camera,
     renderer,
-    clock,
+	clock,
     deltaTime,
     totalTime,
     arToolkitSource,
     arToolkitContext,
-    markerRoot1,
-	mesh1,
-	textMesh1,
+    markerRoot,
+	planetMesh,
+	textMarkerRoot,
+	textMesh,
 	rotation = 0;
 
 window.onload = function()
 {
 	getParams();
-    initialize();
+    init();
     animate();
 }
 
@@ -24,9 +25,12 @@ function getParams()
 {
 	const urlParams = new URLSearchParams(window.location.search);
 	planetImg 		= 'images/'+urlParams.get('planet')+'.jpg';
+
+	if (urlParams.get('planet') == null)
+		window.location.href = 'index.html';
 }
 
-function initialize()
+function init()
 {
 	scene        = new THREE.Scene();
 	ambientLight = new THREE.AmbientLight();
@@ -40,6 +44,7 @@ function initialize()
 		alpha: true
     });
 
+	// renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.domElement.style.position = 'absolute'
 	renderer.domElement.style.top      = '0px'
@@ -95,63 +100,53 @@ function initialize()
 	////////////////////////////////////////////////////////////
 
 	// build markerControls
-	markerRoot1 = new THREE.Group();
-    scene.add(markerRoot1);
+	markerRoot = new THREE.Group();
+    scene.add(markerRoot);
 
-	let markerControls1 = new THREEx.ArMarkerControls(arToolkitContext, markerRoot1, {
+	let markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type: 'pattern', patternUrl: 'data/hiro.patt',
-    })
+	});
 
-	let geometry1   = new THREE.SphereGeometry(1,32,32);
-	let loader      = new THREE.TextureLoader();
-	let texture     = loader.load(planetImg, render);
-    let material1   = new THREE.MeshLambertMaterial({map:texture, opacity:1});
+	let planetGeometry  = new THREE.SphereGeometry(1,32,32);
+	let planetLoader    = new THREE.TextureLoader();
+	let planetTexture   = planetLoader.load(planetImg, render);
+    let planetMaterial  = new THREE.MeshLambertMaterial({map:planetTexture, opacity:1});
+	planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
 
-	mesh1            = new THREE.Mesh(geometry1, material1);
-	mesh1.position.y = 1;
+	planetMesh.position.x = 0;
+	planetMesh.position.y = 1;
+	planetMesh.position.z = 0;
+	planetMesh.rotation.x = 0;
+	planetMesh.rotation.y = 0;
 
-	markerRoot1.add(mesh1);
+	markerRoot.add(planetMesh);
 
-	var height = 20,
-		size = 70,
-		hover = 30,
-
-		curveSegments = 4,
-
-		bevelThickness = 2,
-		bevelSize = 1.5,
-		bevelEnabled = true,
-		// font        = undefined,
-		// fontName    = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
-		// fontWeight  = "bold", // normal bold
-		textLoader  = new THREE.FontLoader();
-
-	textLoader.load( 'fonts/helvetiker_bold.typeface.json', function ( font ) {
-		var textGeo = new THREE.TextGeometry("hola", {
+	let textLoader = new THREE.FontLoader();
+	textLoader.load('js/fonts/helvetiker_regular.typeface.json', function(font) {
+		let textGeo = new THREE.TextGeometry('Tierra', {
 			font: font,
-			size: size,
-			height: height,
-			curveSegments: curveSegments,
-			bevelThickness: bevelThickness,
-			bevelSize: bevelSize,
-			bevelEnabled: bevelEnabled
+			size: 0.5,
+			height: 1,
+			curveSegments: 12
 		});
 
-		let material2 = [
-			new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
-			new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
-		];
+		// textGeo.center();
+		var textMaterial = new THREE.MeshPhongMaterial({color: 0x000000});
+		textMesh 		 = new THREE.Mesh(textGeo, textMaterial);
 
-		textMesh1 = new THREE.Mesh(textGeo, material2);
-		textMesh1.position.set( 0, 0, 0 );
-		markerRoot1.add(textMesh1);
+		textMesh.position.x = 1.1;
+		textMesh.position.y = 1;
+		textMesh.position.z = 0;
+		textMesh.rotation.x = 0;
+		textMesh.rotation.y = 0;
+		markerRoot.add(textMesh);
 	});
 }
 
 function update()
 {
-	if (markerRoot1.visible)
-        mesh1.rotation.y += rotation;
+	if (markerRoot.visible)
+		planetMesh.rotation.y += rotation;
 
 	// update artoolkit on every frame
 	if (arToolkitSource.ready !== false)
@@ -160,6 +155,7 @@ function update()
 
 function render()
 {
+	renderer.clear();
 	renderer.render(scene, camera);
 }
 
