@@ -10,11 +10,11 @@ var planetImg,
     arToolkitContext,
     markerRoot1,
 	mesh1,
+	textMesh1,
 	rotation = 0;
 
 window.onload = function()
 {
-	console.log('planets: 0.1.0');
 	getParams();
     initialize();
     animate();
@@ -111,6 +111,41 @@ function initialize()
 	mesh1.position.y = 1;
 
 	markerRoot1.add(mesh1);
+
+	var height = 20,
+		size = 70,
+		hover = 30,
+
+		curveSegments = 4,
+
+		bevelThickness = 2,
+		bevelSize = 1.5,
+		bevelEnabled = true,
+		// font        = undefined,
+		// fontName    = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+		// fontWeight  = "bold", // normal bold
+		textLoader  = new THREE.FontLoader();
+
+	textLoader.load( 'fonts/helvetiker_bold.typeface.json', function ( font ) {
+		var textGeo = new THREE.TextGeometry("hola", {
+			font: font,
+			size: size,
+			height: height,
+			curveSegments: curveSegments,
+			bevelThickness: bevelThickness,
+			bevelSize: bevelSize,
+			bevelEnabled: bevelEnabled
+		});
+
+		let material2 = [
+			new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
+			new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
+		];
+
+		textMesh1 = new THREE.Mesh(textGeo, material2);
+		textMesh1.position.set( 0, 0, 0 );
+		markerRoot1.add(textMesh1);
+	});
 }
 
 function update()
@@ -139,7 +174,7 @@ function animate()
 
 function action(action)
 {
-	if (action == 'menu')
+	if (action == 'back')
 		window.location.href = 'index.html';
 
 	if (action == 'move')

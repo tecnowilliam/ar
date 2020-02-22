@@ -2,6 +2,7 @@ body
 {
     margin:0px;
     overflow:hidden;
+    background-color: black;
 }
 
 #div-buttons
@@ -15,3 +16,40 @@ body
 {
     position: absolute;
 }
+
+.button
+{
+    border: 2px solid black;
+    color: white;
+    display: inline-block;
+    float: left;
+    font-size: 15px;
+    opacity: 0.5;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.b1
+{
+    background-color: #555555;
+}
+
+.b2
+{
+    background-color: #4CAF50;
+    border-left: 0px;
+}
+
+.b3
+{
+    background-color: #f44336;
+    border-left: 0px;
+}
+
+.button:hover
+{
+    opacity: 1;
+}
+

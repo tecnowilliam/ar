@@ -2,6 +2,7 @@ body
 {
     margin:0px;
     overflow:hidden;
+    background-color: black;
 }
 
 #solar-system
@@ -12,11 +13,12 @@ body
     z-index: -1;
 }
 
-.title
+#title
 {
     color: white;
     font-size: xxx-large;
     font-weight: bold;
-    padding: 10px;
+    padding-left: 20px;
+    padding-top: 10px;
     position: absolute;
 }
