@@ -43,14 +43,15 @@ td
     color: white;
     display: inline-block;
     float: left;
-    font-size: 30px;
+    font-size: 25px;
+    font-weight: bold;
     height: 75px;
     opacity: 0.5;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
     transition: 0.2s;
-    width: 200px;
+    width: 150px;
     max-width: 100%;
 }
 
@@ -78,7 +79,6 @@ td
 .button:hover
 {
     opacity: 1;
-    height: 90px;
 }
 
 .center

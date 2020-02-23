@@ -30,6 +30,12 @@ function getParams()
 	planetId		= urlParams.get('planet');
 	planetImg 		= 'images/'+planetId+'.jpg';
 
+	if (planetId != 'earth')
+		document.getElementById('earth-night').remove();
+
+	if (planetId == 'earth-night')
+		planetId = 'earth'
+
 	if (planetId == null)
 		window.location.href = 'index.html';
 }
@@ -139,8 +145,8 @@ function init()
 		var textMaterial = new THREE.MeshPhongMaterial({color: 0x000000, opacity: 0.5});
 		textMesh 		 = new THREE.Mesh(textGeo, textMaterial);
 
-		textMesh.position.x = 2;
-		textMesh.position.y = 0.5;
+		textMesh.position.x = dataPlanets[planetId].ptx;
+		textMesh.position.y = dataPlanets[planetId].pty;
 		textMesh.position.z = 0;
 		textMesh.rotation.x = 0;
 		textMesh.rotation.y = 0;
@@ -191,13 +197,16 @@ function action(action)
 
 	if (action == 'stop')
 		rotation = 0
+
+	if (action == 'night')
+		window.location.href = 'planet.html?planet=earth-night';
 }
 
 function updateDataPlanet()
 {
-	document.getElementById('planetInfoName').innerHTML  = dataPlanets[planetId].name;
-	document.getElementById('planetInfoMoons').innerHTML = dataPlanets[planetId].moons;
-	document.getElementById('planetInfoDe').innerHTML = dataPlanets[planetId].de;
-	document.getElementById('planetInfoPo').innerHTML = dataPlanets[planetId].po;
-	document.getElementById('planetInfoPr').innerHTML = dataPlanets[planetId].pr;
+	document.getElementById('planetInfoName').innerHTML  	= dataPlanets[planetId].name;
+	document.getElementById('planetInfoMoons').innerHTML 	= dataPlanets[planetId].moons;
+	document.getElementById('planetInfoDe').innerHTML 		= dataPlanets[planetId].de;
+	document.getElementById('planetInfoPo').innerHTML 		= dataPlanets[planetId].po;
+	document.getElementById('planetInfoPr').innerHTML 		= dataPlanets[planetId].pr;
 }

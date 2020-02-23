@@ -14,3 +14,5 @@ https://github.com/aframevr/aframe/tree/v1.0.4
 https://threejs.org/
 
 https://maps.jpl.nasa.gov/earth.html
+https://www.solarsystemscope.com/
+https://www.solarsystemscope.com/textures/
