@@ -1,4 +1,13 @@
 const dataPlanets = {
+    ceres:{
+        name: 'Ceres',
+        ptx: 2,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
     earth:{
         name: 'Tierra',
         ptx: 2,
@@ -7,6 +16,15 @@ const dataPlanets = {
         de: 12756,
         po: 365.3,
         pr: 1
+    },
+    jupiter:{
+        name: 'Júpiter',
+        ptx: 2,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
     },
     mars: {
         name: 'Marte',
@@ -35,12 +53,39 @@ const dataPlanets = {
         po: 27.3,
         pr: 27.3
     },
+    neptune:{
+        name: 'Neptuno',
+        ptx: 2.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
+    saturn:{
+        name: 'Saturno',
+        ptx: 2.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
     sun: {
         name: 'Sol',
         ptx: 1.5,
         pty: 0.5,
         moons: 0,
         de: 1391016,
+        po: 0,
+        pr: 0
+    },
+    uranus:{
+        name: 'Urano',
+        ptx: 2,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
         po: 0,
         pr: 0
     },

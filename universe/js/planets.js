@@ -131,8 +131,24 @@ function init()
 
 	markerRoot.add(planetMesh);
 
+	if (planetId == 'saturn') {
+		let planetGeometry  = new THREE.SphereGeometry(1.5,32,32,6,6.3,1,0.2);
+		let planetLoader    = new THREE.TextureLoader();
+		let planetTexture   = planetLoader.load('images/saturn_ring.jpg', render);
+		let planetMaterial  = new THREE.MeshLambertMaterial({map:planetTexture, opacity:1});
+		planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
+
+		planetMesh.position.x = 0;
+		planetMesh.position.y = 0.5;
+		planetMesh.position.z = 0;
+		planetMesh.rotation.x = 0;
+		planetMesh.rotation.y = 0;
+
+		markerRoot.add(planetMesh);
+	}
+
 	let textLoader = new THREE.FontLoader();
-	textLoader.load('js/fonts/helvetiker_regular.typeface.json', function(font) {
+	textLoader.load('js/fonts/droid/droid_sans_regular.typeface.json', function(font) {
 		let textGeo = new THREE.TextGeometry(dataPlanets[planetId].name, {
 			font: font,
 			size: 0.5,
