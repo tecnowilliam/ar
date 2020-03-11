@@ -117,35 +117,68 @@ function init()
 		type: 'pattern', patternUrl: 'data/hiro.patt',
 	});
 
+	if (planetId == 'saturn') {
+		let planetGeometry  = new THREE.RingGeometry(1.2,1.5,30);
+		let planetLoader    = new THREE.TextureLoader();
+		let planetTexture   = planetLoader.load('images/saturn_ring.jpg', render);
+		let planetMaterial  = new THREE.MeshBasicMaterial({map:planetTexture, opacity:1, side:THREE.DoubleSide});
+		planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
+
+		planetMesh.position.x = 0;
+		planetMesh.position.y = 1;
+		planetMesh.position.z = 0;
+		planetMesh.rotation.x = 90;
+		planetMesh.rotation.y = 0;
+		markerRoot.add(planetMesh);
+	}
+
+
 	let planetGeometry  = new THREE.SphereGeometry(1,32,32);
+	if (planetId == 'asteroid' || planetId == 'comet') {
+		planetGeometry  = new THREE.SphereGeometry(1,10,5);
+	}
+
 	let planetLoader    = new THREE.TextureLoader();
 	let planetTexture   = planetLoader.load(planetImg, render);
     let planetMaterial  = new THREE.MeshLambertMaterial({map:planetTexture, opacity:1});
-	planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
 
+	if (planetId == 'asteroid') {
+		let asteroidGeometry1 = new THREE.SphereGeometry(2,10,5);
+		planetMesh            = new THREE.Mesh(asteroidGeometry1, planetMaterial);
+		planetMesh.position.x = 1;
+		planetMesh.position.y = 1.5;
+		planetMesh.position.z = -3.5;
+		markerRoot.add(planetMesh);
+
+		let asteroidGeometry2 = new THREE.SphereGeometry(0.3,10,5);
+		planetMesh            = new THREE.Mesh(asteroidGeometry2, planetMaterial);
+		planetMesh.position.x = 1.5;
+		planetMesh.position.y = 2;
+		planetMesh.position.z = -0.75;
+		markerRoot.add(planetMesh);
+
+		let asteroidGeometry3 = new THREE.SphereGeometry(0.5,10,5);
+		planetMesh            = new THREE.Mesh(asteroidGeometry3, planetMaterial);
+		planetMesh.position.x = -1.5;
+		planetMesh.position.y = 2;
+		planetMesh.position.z = -0.75;
+		markerRoot.add(planetMesh);
+
+		let asteroidGeometry4 = new THREE.SphereGeometry(0.2,10,5);
+		planetMesh            = new THREE.Mesh(asteroidGeometry4, planetMaterial);
+		planetMesh.position.x = -0.75;
+		planetMesh.position.y = 1.5;
+		planetMesh.position.z = -1;
+		markerRoot.add(planetMesh);
+	}
+
+	planetMesh            = new THREE.Mesh(planetGeometry, planetMaterial);
 	planetMesh.position.x = 0;
 	planetMesh.position.y = 1;
 	planetMesh.position.z = 0;
 	planetMesh.rotation.x = 0;
 	planetMesh.rotation.y = 0;
-
 	markerRoot.add(planetMesh);
-
-	if (planetId == 'saturn') {
-		let planetGeometry  = new THREE.SphereGeometry(1.5,32,32,6,6.3,1,0.2);
-		let planetLoader    = new THREE.TextureLoader();
-		let planetTexture   = planetLoader.load('images/saturn_ring.jpg', render);
-		let planetMaterial  = new THREE.MeshLambertMaterial({map:planetTexture, opacity:1});
-		planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
-
-		planetMesh.position.x = 0;
-		planetMesh.position.y = 0.5;
-		planetMesh.position.z = 0;
-		planetMesh.rotation.x = 0;
-		planetMesh.rotation.y = 0;
-
-		markerRoot.add(planetMesh);
-	}
 
 	let textLoader = new THREE.FontLoader();
 	textLoader.load('js/fonts/droid/droid_sans_regular.typeface.json', function(font) {

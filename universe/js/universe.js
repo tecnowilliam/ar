@@ -17,8 +17,8 @@ function getPosition()
         if (planet != '') {
             window.location.href = 'planet.html?planet='+planet;
         }
-        console.log('x:'+positionX);
-        console.log('y:'+positionY);
+        // console.log('x:'+positionX);
+        // console.log('y:'+positionY);
     });
 }
 
@@ -28,11 +28,30 @@ function onPlanet(positionX, positionY)
     document.getElementById('solar-system').style.cursor = 'initial';
     document.getElementById('title').innerHTML           = 'Sistema Solar';
 
+    // Asteroid
+    if (positionX >= 44 && positionX <= 54 && positionY >= 6 && positionY <= 13) {
+        document.getElementById('solar-system').style.cursor = 'pointer';
+        document.getElementById('title').innerHTML           = 'Sistema Solar: Asteroides';
+        planet = 'asteroid';
+    }
+    if (positionX >= 85 && positionX <= 95 && positionY >= 12 && positionY <= 17) {
+        document.getElementById('solar-system').style.cursor = 'pointer';
+        document.getElementById('title').innerHTML           = 'Sistema Solar: Asteroides';
+        planet = 'asteroid';
+    }
+
     // Ceres
     if (positionX >= 49 && positionX <= 52 && positionY >= 78 && positionY <= 83) {
         document.getElementById('solar-system').style.cursor = 'pointer';
         document.getElementById('title').innerHTML           = 'Sistema Solar: Ceres';
         planet = 'ceres';
+    }
+
+    // Comet
+    if (positionX >= 40 && positionX <= 46 && positionY >= 16 && positionY <= 21) {
+        document.getElementById('solar-system').style.cursor = 'pointer';
+        document.getElementById('title').innerHTML           = 'Sistema Solar: Cometa';
+        planet = 'comet';
     }
 
     // Earth
@@ -42,11 +61,32 @@ function onPlanet(positionX, positionY)
         planet = 'earth';
     }
 
+    // Eris
+    if (positionX >= 95 && positionX <= 98 && positionY >= 42 && positionY <= 47) {
+        document.getElementById('solar-system').style.cursor = 'pointer';
+        document.getElementById('title').innerHTML           = 'Sistema Solar: Eris';
+        planet = 'eris';
+    }
+
+    // Haumea
+    if (positionX >= 89 && positionX <= 92 && positionY >= 55 && positionY <= 59) {
+        document.getElementById('solar-system').style.cursor = 'pointer';
+        document.getElementById('title').innerHTML           = 'Sistema Solar: Haumea';
+        planet = 'haumea';
+    }
+
     // Jupiter
     if (positionX >= 51 && positionX <= 67 && positionY >= 46 && positionY <= 72) {
         document.getElementById('solar-system').style.cursor = 'pointer';
         document.getElementById('title').innerHTML           = 'Sistema Solar: Júpiter';
         planet = 'jupiter';
+    }
+
+    // Makemake
+    if (positionX >= 95 && positionX <= 97 && positionY >= 71 && positionY <= 74.5) {
+        document.getElementById('solar-system').style.cursor    = 'pointer';
+        document.getElementById('title').innerHTML              = 'Sistema Solar: Makemake';
+        planet = 'makemake';
     }
 
     // Mars
@@ -75,6 +115,13 @@ function onPlanet(positionX, positionY)
         document.getElementById('solar-system').style.cursor    = 'pointer';
         document.getElementById('title').innerHTML              = 'Sistema Solar: Neptuno';
         planet = 'neptune';
+    }
+
+    // Pluto
+    if (positionX >= 86 && positionX <= 89.5 && positionY >= 26 && positionY <= 33) {
+        document.getElementById('solar-system').style.cursor    = 'pointer';
+        document.getElementById('title').innerHTML              = 'Sistema Solar: Plutón';
+        planet = 'pluto';
     }
 
     // Saturn

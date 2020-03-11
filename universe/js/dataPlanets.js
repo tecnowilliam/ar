@@ -1,6 +1,24 @@
 const dataPlanets = {
+    asteroid:{
+        name: 'Asteroides',
+        ptx: 2.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
     ceres:{
         name: 'Ceres',
+        ptx: 2,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
+    comet:{
+        name: 'Cometa',
         ptx: 2,
         pty: 0.5,
         moons: 0,
@@ -17,9 +35,36 @@ const dataPlanets = {
         po: 365.3,
         pr: 1
     },
+    eris:{
+        name: 'Eris',
+        ptx: 1.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
+    haumea:{
+        name: 'Haumea',
+        ptx: 2.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
     jupiter:{
         name: 'Júpiter',
         ptx: 2,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
+    makemake:{
+        name: 'Makemake',
+        ptx: 2.75,
         pty: 0.5,
         moons: 0,
         de: 0,
@@ -56,6 +101,15 @@ const dataPlanets = {
     neptune:{
         name: 'Neptuno',
         ptx: 2.5,
+        pty: 0.5,
+        moons: 0,
+        de: 0,
+        po: 0,
+        pr: 0
+    },
+    pluto:{
+        name: 'Plutón',
+        ptx: 2,
         pty: 0.5,
         moons: 0,
         de: 0,
