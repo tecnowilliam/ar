@@ -1,7 +1,7 @@
 var planet = '';
 
 window.onload = function () {
-    if (Math.floor(Date.now() / 1000) < 1590883200)
+    if (Math.floor(Date.now() / 1000) < 1588204800)
         getPosition();
 }
 
