@@ -1,153 +1,187 @@
 const dataPlanets = {
-    asteroid:{
-        name: 'Asteroides',
+    asteroid: {
+        n: 'Asteroides',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    ceres:{
-        name: 'Ceres',
+    ceres: {
+        n: 'Ceres',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
+        g: 0.27,
+        tp: -106.15,
+        sn: 0,
+        snl: [
+            'Sin lunas'
+        ],
+        de: 952.4,
+        po: 1683,
+        pr: 0.375
+    },
+    comet: {
+        n: 'Cometa',
+        ptx: 2,
+        pty: 0.5,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    comet:{
-        name: 'Cometa',
+    earth: {
+        n: 'Tierra',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
-        de: 0,
-        po: 0,
-        pr: 0
-    },
-    earth:{
-        name: 'Tierra',
-        ptx: 2,
-        pty: 0.5,
-        moons: 1,
+        g: 9.81,
+        tp: 14.85,
+        sn: 1,
+        snl: [
+            'Luna'
+        ],
         de: 12756,
         po: 365.3,
         pr: 1
     },
-    eris:{
-        name: 'Eris',
+    eris: {
+        n: 'Eris',
         ptx: 1.5,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    haumea:{
-        name: 'Haumea',
+    haumea: {
+        n: 'Haumea',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    jupiter:{
-        name: 'Júpiter',
+    jupiter: {
+        n: 'Júpiter',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    makemake:{
-        name: 'Makemake',
+    makemake: {
+        n: 'Makemake',
         ptx: 2.75,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
     mars: {
-        name: 'Marte',
+        n: 'Marte',
         ptx: 2,
         pty: 0.5,
-        moons: 2,
+        g: 3.71,
+        tp: '-87,15 / -5,15',
+        sn: 2,
+        snl: [
+            'Deimos',
+            'Fobos'
+        ],
         de: 6787,
         po: 686.9,
         pr: 1
     },
     mercury: {
-        name: 'Mercurio',
+        n: 'Mercurio',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
-        de: 4878,
+        g: 2.8,
+        tp: 166.85,
+        sn: 0,
+        snl: [
+            'Sin lunas'
+        ],
+        de: 4879,
         po: 88,
         pr: 58.7
     },
     moon: {
-        name: 'Luna',
+        n: 'Luna',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
+        g: 1.62,
+        tp: 123,
+        sn: 0,
+        snl: [],
         de: 1373,
         po: 27.3,
         pr: 27.3
     },
-    neptune:{
-        name: 'Neptuno',
+    neptune: {
+        n: 'Neptuno',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    pluto:{
-        name: 'Plutón',
+    pluto: {
+        n: 'Plutón',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
-    saturn:{
-        name: 'Saturno',
+    saturn: {
+        n: 'Saturno',
         ptx: 2.5,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
     sun: {
-        name: 'Sol',
+        n: 'Sol',
         ptx: 1.5,
         pty: 0.5,
-        moons: 0,
+        g: 274,
+        tp: 5505,
+        sn: 1,
+        snl: [
+            '(486958) Arrokoth'
+        ],
         de: 1391016,
         po: 0,
-        pr: 0
+        pr: '24-30'
     },
-    uranus:{
-        name: 'Urano',
+    uranus: {
+        n: 'Urano',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
+        sn: 0,
         de: 0,
         po: 0,
         pr: 0
     },
     venus: {
-        name: 'Venus',
+        n: 'Venus',
         ptx: 2,
         pty: 0.5,
-        moons: 0,
+        g: 8.9,
+        tp: 456.85,
+        sn: 0,
+        snl: [
+            'Sin lunas'
+        ],
         de: 12100,
         po: 224.7,
         pr: 243

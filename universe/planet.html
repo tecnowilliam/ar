@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html>
+
 <head lang="es">
 	<meta charset="UTF-8">
 	<title>AR-Planets</title>
@@ -14,40 +16,58 @@
 	<script src="threex/threex-armarkercontrols.js"></script>
 	<script src="js/dataPlanets.js"></script>
 	<script src="js/planets.js"></script>
-	<link href="css/planets.css" type="text/css" rel="stylesheet"/>
+	<link href="css/planets.css" type="text/css" rel="stylesheet" />
 </head>
+
 <body>
 	<div id='buttons'>
-		<button class='button b1' onclick="action('back')">Volver</button>
-		<button class='button b2' onclick="action('info')">Info</button>
-		<button class='button b3' onclick="action('move')">Mover</button>
-		<button class='button b4' onclick="action('stop')">Parar</button>
-		<button id='earth-night' class='button b1' onclick="action('night')">Noche</button>
+		<button id='buttonBack' class='button b1' onclick="action('back')">Volver</button>
+		<button id='buttonInfo' class='button b2' onclick="action('info')">Info</button>
+		<button id='buttonMoons' class='button b3' onclick="action('moons')">Sátelites</button>
+		<button id='buttonMove' class='button b4' onclick="action('move')">Mover</button>
+		<button id='buttonStop' class='button b5' onclick="action('stop')">Parar</button>
+		<button id='buttonNight' class='button b1' onclick="action('night')">Noche</button>
 	</div>
 	<div id="planetInfo">
 		<table>
 			<tr>
 				<td>Nombre</td>
-				<td class='center'><span id='planetInfoName'></span></td>
+				<td class='center'><span id='planetInfoN'></span></td>
 			</tr>
 			<tr>
-				<td>Sátelites Naturales (lunas)</td>
-				<td class='center'><span id='planetInfoMoons'></span></td>
+				<td>Gravedad (m/s^2)</td>
+				<td class='center'><span id='planetInfoG'></span></td>
 			</tr>
 			<tr>
-				<td>Diámetro Ecuatorial (Km)</td>
-				<td class='center'><span id='planetInfoDe'></span></td>
+				<td>Temperatura promedio (°C)</td>
+				<td class='center'><span id='planetInfoTP'></span></td>
 			</tr>
 			<tr>
-				<td>Periodo Orbital (días)</td>
-				<td class='center'><span id='planetInfoPo'></span></td>
+				<td>Sátelites Naturales (Lunas)</td>
+				<td class='center'><span id='planetInfoSN'></span></td>
 			</tr>
 			<tr>
-				<td>Periodo de Rotación (días)</td>
-				<td class='center'><span id='planetInfoPr'></span></td>
+				<td class="tooltip">Diámetro Ecuatorial (Km)
+					<span class="tooltiptext">Distancia que hay desde un punto hacia el punto opuesto justo sobre la linea ecuatorial.</span>
+				</td>
+				<td class='center'><span id='planetInfoDE'></span></td>
+			</tr>
+			<tr>
+				<td class="tooltip">Periodo Orbital (Días)
+					<span class="tooltiptext">Tiempo que le toma recorrer su órbita alrededor del sol</span>
+				</td>
+				<td class='center'><span id='planetInfoPO'></span></td>
+			</tr>
+			<tr>
+				<td class="tooltip">Periodo de Rotación (Días)
+					<span class="tooltiptext">Tiempo que le toma rotar sobre su propio eje</span>
+				</td>
+				<td class='center'><span id='planetInfoPR'></span></td>
 			</tr>
 		</table>
 	</div>
+	<div id="moonsInfo"><ul id="moonsList"></ul></div>
 	<div id='camera'></div>
 </body>
+
 </html>

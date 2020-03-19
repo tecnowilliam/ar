@@ -5,6 +5,7 @@ https://www.youtube.com/watch?v=W1UVcYI-ABQ
 
 Wiki:
 https://es.wikipedia.org/wiki/Sistema_solar
+https://es.wikipedia.org/wiki/Anexo:Datos_de_los_planetas_del_sistema_solar
 
 Repos:
 https://github.com/stemkoski/AR-Examples

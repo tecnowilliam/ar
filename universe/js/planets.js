@@ -1,67 +1,75 @@
 var planetId,
 	planetImg,
 	scene,
-    ambientLight,
-    camera,
-    renderer,
+	ambientLight,
+	camera,
+	renderer,
 	clock,
-    deltaTime,
-    totalTime,
-    arToolkitSource,
-    arToolkitContext,
-    markerRoot,
+	deltaTime,
+	totalTime,
+	arToolkitSource,
+	arToolkitContext,
+	markerRoot,
 	planetMesh,
 	textMarkerRoot,
 	textMesh,
 	rotation = 0;
 
-window.onload = function()
-{
+window.onload = function () {
 	document.getElementById('planetInfo').style.display = 'none';
+	document.getElementById('moonsInfo').style.display = 'none';
+	document.getElementById('buttonInfo').style.display = 'block';
+	document.getElementById('buttonMoons').style.display = 'block';
 
 	getParams();
-    init();
-    animate();
+	init();
+	animate();
 }
 
-function getParams()
-{
+function getParams() {
 	const urlParams = new URLSearchParams(window.location.search);
-	planetId		= urlParams.get('planet');
-	planetImg 		= 'images/'+planetId+'.jpg';
+	planetId = urlParams.get('planet');
+	planetImg = 'images/' + planetId + '.jpg';
 
 	if (planetId != 'earth')
-		document.getElementById('earth-night').remove();
+		document.getElementById('buttonNight').remove();
 
-	if (planetId == 'earth-night')
+	if (planetId == 'buttonNight')
 		planetId = 'earth'
+
+	if (planetId == 'asteroid' || planetId == 'comet') {
+		document.getElementById('buttonInfo').style.display = 'none';
+		document.getElementById('buttonMoons').style.display = 'none';
+	}
+
+	if (planetId == 'moon')
+		document.getElementById('buttonMoons').style.display = 'none';
 
 	if (planetId == null)
 		window.location.href = 'index.html';
 }
 
-function init()
-{
-	scene        = new THREE.Scene();
+function init() {
+	scene = new THREE.Scene();
 	ambientLight = new THREE.AmbientLight();
-    scene.add(ambientLight);
+	scene.add(ambientLight);
 
 	camera = new THREE.Camera();
 	scene.add(camera);
 
 	renderer = new THREE.WebGLRenderer({
-		antialias : true,
+		antialias: true,
 		alpha: true
-    });
+	});
 
 	// renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(window.innerWidth, window.innerHeight);
+	renderer.setSize(window.innerWidth, window.innerHeight);
 	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top      = '0px'
-	renderer.domElement.style.left     = '0px'
+	renderer.domElement.style.top = '0px'
+	renderer.domElement.style.left = '0px'
 	document.getElementById('camera').appendChild(renderer.domElement);
 
-	clock     = new THREE.Clock();
+	clock = new THREE.Clock();
 	deltaTime = 0;
 	totalTime = 0;
 
@@ -70,23 +78,22 @@ function init()
 	////////////////////////////////////////////////////////////
 
 	arToolkitSource = new THREEx.ArToolkitSource({
-		sourceType : 'webcam',
+		sourceType: 'webcam',
 	});
 
-	function onResize()
-	{
+	function onResize() {
 		arToolkitSource.onResize()
 		arToolkitSource.copySizeTo(renderer.domElement)
 		if (arToolkitContext.arController !== null)
 			arToolkitSource.copySizeTo(arToolkitContext.arController.canvas)
 	}
 
-	arToolkitSource.init(function onReady(){
+	arToolkitSource.init(function onReady() {
 		onResize()
 	});
 
 	// handle resize event
-	window.addEventListener('resize', function(){
+	window.addEventListener('resize', function () {
 		onResize()
 	});
 
@@ -111,18 +118,19 @@ function init()
 
 	// build markerControls
 	markerRoot = new THREE.Group();
-    scene.add(markerRoot);
+	scene.add(markerRoot);
 
 	let markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
 		type: 'pattern', patternUrl: 'data/hiro.patt',
 	});
 
+	// Saturn's rings
 	if (planetId == 'saturn') {
-		let planetGeometry  = new THREE.RingGeometry(1.2,1.5,30);
-		let planetLoader    = new THREE.TextureLoader();
-		let planetTexture   = planetLoader.load('images/saturn_ring.jpg', render);
-		let planetMaterial  = new THREE.MeshBasicMaterial({map:planetTexture, opacity:1, side:THREE.DoubleSide});
-		planetMesh        	= new THREE.Mesh(planetGeometry, planetMaterial);
+		let planetGeometry = new THREE.RingGeometry(1.2, 1.5, 30);
+		let planetLoader = new THREE.TextureLoader();
+		let planetTexture = planetLoader.load('images/saturn_ring.jpg', render);
+		let planetMaterial = new THREE.MeshBasicMaterial({ map: planetTexture, opacity: 1, side: THREE.DoubleSide });
+		planetMesh = new THREE.Mesh(planetGeometry, planetMaterial);
 
 		planetMesh.position.x = 0;
 		planetMesh.position.y = 1;
@@ -132,47 +140,47 @@ function init()
 		markerRoot.add(planetMesh);
 	}
 
-
-	let planetGeometry  = new THREE.SphereGeometry(1,32,32);
+	let planetGeometry = new THREE.SphereGeometry(1, 32, 32);
 	if (planetId == 'asteroid' || planetId == 'comet') {
-		planetGeometry  = new THREE.SphereGeometry(1,10,5);
+		planetGeometry = new THREE.SphereGeometry(1, 10, 5);
 	}
 
-	let planetLoader    = new THREE.TextureLoader();
-	let planetTexture   = planetLoader.load(planetImg, render);
-    let planetMaterial  = new THREE.MeshLambertMaterial({map:planetTexture, opacity:1});
+	let planetLoader = new THREE.TextureLoader();
+	let planetTexture = planetLoader.load(planetImg, render);
+	let planetMaterial = new THREE.MeshLambertMaterial({ map: planetTexture, opacity: 1 });
 
+	// Asteroids
 	if (planetId == 'asteroid') {
-		let asteroidGeometry1 = new THREE.SphereGeometry(2,10,5);
-		planetMesh            = new THREE.Mesh(asteroidGeometry1, planetMaterial);
+		let asteroidGeometry1 = new THREE.SphereGeometry(2, 10, 5);
+		planetMesh = new THREE.Mesh(asteroidGeometry1, planetMaterial);
 		planetMesh.position.x = 1;
 		planetMesh.position.y = 1.5;
 		planetMesh.position.z = -3.5;
 		markerRoot.add(planetMesh);
 
-		let asteroidGeometry2 = new THREE.SphereGeometry(0.3,10,5);
-		planetMesh            = new THREE.Mesh(asteroidGeometry2, planetMaterial);
+		let asteroidGeometry2 = new THREE.SphereGeometry(0.3, 10, 5);
+		planetMesh = new THREE.Mesh(asteroidGeometry2, planetMaterial);
 		planetMesh.position.x = 1.5;
 		planetMesh.position.y = 2;
 		planetMesh.position.z = -0.75;
 		markerRoot.add(planetMesh);
 
-		let asteroidGeometry3 = new THREE.SphereGeometry(0.5,10,5);
-		planetMesh            = new THREE.Mesh(asteroidGeometry3, planetMaterial);
+		let asteroidGeometry3 = new THREE.SphereGeometry(0.5, 10, 5);
+		planetMesh = new THREE.Mesh(asteroidGeometry3, planetMaterial);
 		planetMesh.position.x = -1.5;
 		planetMesh.position.y = 2;
 		planetMesh.position.z = -0.75;
 		markerRoot.add(planetMesh);
 
-		let asteroidGeometry4 = new THREE.SphereGeometry(0.2,10,5);
-		planetMesh            = new THREE.Mesh(asteroidGeometry4, planetMaterial);
+		let asteroidGeometry4 = new THREE.SphereGeometry(0.2, 10, 5);
+		planetMesh = new THREE.Mesh(asteroidGeometry4, planetMaterial);
 		planetMesh.position.x = -0.75;
 		planetMesh.position.y = 1.5;
 		planetMesh.position.z = -1;
 		markerRoot.add(planetMesh);
 	}
 
-	planetMesh            = new THREE.Mesh(planetGeometry, planetMaterial);
+	planetMesh = new THREE.Mesh(planetGeometry, planetMaterial);
 	planetMesh.position.x = 0;
 	planetMesh.position.y = 1;
 	planetMesh.position.z = 0;
@@ -181,7 +189,7 @@ function init()
 	markerRoot.add(planetMesh);
 
 	let textLoader = new THREE.FontLoader();
-	textLoader.load('js/fonts/droid/droid_sans_regular.typeface.json', function(font) {
+	textLoader.load('js/fonts/droid/droid_sans_regular.typeface.json', function (font) {
 		let textGeo = new THREE.TextGeometry(dataPlanets[planetId].name, {
 			font: font,
 			size: 0.5,
@@ -191,8 +199,8 @@ function init()
 
 		textGeo.center();
 
-		var textMaterial = new THREE.MeshPhongMaterial({color: 0x000000, opacity: 0.5});
-		textMesh 		 = new THREE.Mesh(textGeo, textMaterial);
+		var textMaterial = new THREE.MeshPhongMaterial({ color: 0x000000, opacity: 0.5 });
+		textMesh = new THREE.Mesh(textGeo, textMaterial);
 
 		textMesh.position.x = dataPlanets[planetId].ptx;
 		textMesh.position.y = dataPlanets[planetId].pty;
@@ -203,8 +211,7 @@ function init()
 	});
 }
 
-function update()
-{
+function update() {
 	if (markerRoot.visible)
 		planetMesh.rotation.y += rotation;
 
@@ -213,32 +220,39 @@ function update()
 		arToolkitContext.update(arToolkitSource.domElement);
 }
 
-function render()
-{
+function render() {
 	renderer.clear();
 	renderer.render(scene, camera);
 }
 
-function animate()
-{
+function animate() {
 	requestAnimationFrame(animate);
-	deltaTime  = clock.getDelta();
+	deltaTime = clock.getDelta();
 	totalTime += deltaTime;
 	update();
 	render();
 }
 
-function action(action)
-{
+function action(action) {
 	if (action == 'back')
 		window.location.href = 'index.html';
 
 	if (action == 'info')
 		if (document.getElementById('planetInfo').style.display == 'none') {
 			updateDataPlanet();
+			document.getElementById('moonsInfo').style.display = 'none';
 			document.getElementById('planetInfo').style.display = 'block';
 		} else {
 			document.getElementById('planetInfo').style.display = 'none';
+		}
+
+	if (action == 'moons')
+		if (document.getElementById('moonsInfo').style.display == 'none') {
+			updateDataMoons();
+			document.getElementById('planetInfo').style.display = 'none';
+			document.getElementById('moonsInfo').style.display = 'block';
+		} else {
+			document.getElementById('moonsInfo').style.display = 'none';
 		}
 
 	if (action == 'move')
@@ -248,14 +262,23 @@ function action(action)
 		rotation = 0
 
 	if (action == 'night')
-		window.location.href = 'planet.html?planet=earth-night';
+		window.location.href = 'planet.html?planet=buttonNight';
 }
 
-function updateDataPlanet()
-{
-	document.getElementById('planetInfoName').innerHTML  	= dataPlanets[planetId].name;
-	document.getElementById('planetInfoMoons').innerHTML 	= dataPlanets[planetId].moons;
-	document.getElementById('planetInfoDe').innerHTML 		= dataPlanets[planetId].de;
-	document.getElementById('planetInfoPo').innerHTML 		= dataPlanets[planetId].po;
-	document.getElementById('planetInfoPr').innerHTML 		= dataPlanets[planetId].pr;
+function updateDataPlanet() {
+	document.getElementById('planetInfoN').innerHTML = dataPlanets[planetId].n;
+	document.getElementById('planetInfoG').innerHTML = dataPlanets[planetId].g;
+	document.getElementById('planetInfoTP').innerHTML = dataPlanets[planetId].tp;
+	document.getElementById('planetInfoSN').innerHTML = dataPlanets[planetId].sn;
+	document.getElementById('planetInfoDE').innerHTML = dataPlanets[planetId].de;
+	document.getElementById('planetInfoPO').innerHTML = dataPlanets[planetId].po;
+	document.getElementById('planetInfoPR').innerHTML = dataPlanets[planetId].pr;
+}
+
+function updateDataMoons() {
+	var x, list = '';
+	for (x in dataPlanets[planetId].snl) {
+		list += '<li>'+dataPlanets[planetId].snl[x]+'</li>';
+	}
+	document.getElementById('moonsList').innerHTML = list;
 }

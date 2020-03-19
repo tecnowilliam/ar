@@ -32,6 +32,21 @@ td
     z-index: 1;
 }
 
+#moonsInfo
+{
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: large;
+    left: 10px;
+    padding: 5px;
+    padding-right: 25px;
+    position: absolute;
+    top: 100px;
+    max-width: 100%;
+    z-index: 1;
+}
+
 #camera
 {
     position: absolute;
@@ -68,10 +83,16 @@ td
 
 .b3
 {
-    background-color: #4CAF50;
+    background-color: #e7e7e7;
+    color: black;
 }
 
 .b4
+{
+    background-color: #4CAF50;
+}
+
+.b5
 {
     background-color: #f44336;
 }
@@ -84,4 +105,43 @@ td
 .center
 {
     text-align: center;
+}
+
+.tooltip {
+    position: relative;
+    /* display: inline-block; */
+    border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 500px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
