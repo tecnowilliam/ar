@@ -190,7 +190,7 @@ function init() {
 
 	let textLoader = new THREE.FontLoader();
 	textLoader.load('js/fonts/droid/droid_sans_regular.typeface.json', function (font) {
-		let textGeo = new THREE.TextGeometry(dataPlanets[planetId].name, {
+		let textGeo = new THREE.TextGeometry(dataPlanets[planetId].n, {
 			font: font,
 			size: 0.5,
 			height: 0.25,
