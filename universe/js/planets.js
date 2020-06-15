@@ -34,8 +34,10 @@ function getParams() {
 	if (planetId != 'earth')
 		document.getElementById('buttonNight').remove();
 
-	if (planetId == 'buttonNight')
+	if (planetId == 'buttonNight') {
 		planetId = 'earth'
+		planetImg = 'images/earth-night.jpg';
+	}
 
 	if (planetId == 'asteroid' || planetId == 'comet') {
 		document.getElementById('buttonInfo').style.display = 'none';
